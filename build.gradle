@@ -22,6 +22,9 @@ publishing {
   publications {
     mavenJava(MavenPublication) {
       from components.java
+      groupId group
+      artifactId projectName
+      version version
     }
   }
 }
@@ -29,6 +32,8 @@ publishing {
 bintray {
   user = "$bintrayUser"
   key = "$bintrayApiKey"
+  publications = ['mavenJava']
+  configurations = ['archives']
   pkg {
     repo = 'public'
     name = 'no.item.xp.lib-xp-highlight'
@@ -37,7 +42,7 @@ bintray {
     vcsUrl = 'https://github.com/ItemConsulting/enonic-lib-highlight.git'
     version {
       name = project.version
-      configurations = ['archives']
+      released = new Date()
     }
   }
 }
