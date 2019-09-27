@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'com.enonic.xp.base' version '2.0.0'
+    id "com.jfrog.bintray" version "1.8.4"
+}
+
+repositories {
+    mavenLocal()
+    jcenter()
+    xp.enonicRepo()
+    maven {
+        url  "http://itemconsulting.bintray.com/public"
+    }
+}
+
+dependencies {
+  compile "com.enonic.xp:portal-api:${xpVersion}"
+}
+
+bintray {
+  user = "$bintrayUser"
+  key = "$bintrayApiKey"
+  pkg {
+    repo = 'public'
+    name = 'no.item.xp.lib-highlight'
+    userOrg = 'itemconsulting'
+    licenses = ['BSD 3-Clause']
+    vcsUrl = 'https://github.com/ItemConsulting/enonic-lib-highlight.git'
+    version {
+      name = project.version
+      configurations = ['archives']
+    }
+  }
+}
