@@ -1,8 +1,8 @@
-# Code highlighting for Enonic XPs HTML Editor
+# Code Highlighting Macro for Enonic XPs HTML Editor
 
 [ ![Download](https://api.bintray.com/packages/itemconsulting/public/no.item.xp.lib-xp-highlight/images/download.svg?version=1.0.0) ](https://bintray.com/itemconsulting/public/no.item.xp.lib-xp-highlight/1.0.0/link)
 
-<img src="https://github.com/ItemConsulting/lib-xp-highlight/raw/master/docs/icon.svg?sanitize=true" width="150">
+<img src="https://github.com/ItemConsulting/lib-xp-highlight/raw/master/docs/lib-xp-highlight-icon.svg?sanitize=true" width="150">
 
 ## Usage
 
