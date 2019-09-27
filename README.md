@@ -2,6 +2,8 @@
 
 [ ![Download](https://api.bintray.com/packages/itemconsulting/public/no.item.xp.lib-xp-highlight/images/download.svg?version=1.0.0) ](https://bintray.com/itemconsulting/public/no.item.xp.lib-xp-highlight/1.0.0/link)
 
+<img src="https://github.com/ItemConsulting/lib-xp-highlight/raw/master/docs/icon.svg?sanitize=true" width="150">
+
 ## Usage
 
 ### Add dependency
@@ -30,7 +32,7 @@ dependencies {
     </pre>
     [/highlight]
     ```
- 6. The markup rendered on the page will now contain code highlighting
+ 6. The resulting web page will have box containing a highlighted code:
     ![Resulting code on webpage](./docs/demo.png)
 
 ## Deploying
