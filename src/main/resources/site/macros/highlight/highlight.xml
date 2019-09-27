@@ -1,6 +1,6 @@
 <macro>
-  <display-name>Code highlighting</display-name>
-  <description>Wrap code in this macro to provide highlighting</description>
+  <display-name>Code Highlighting</display-name>
+  <description>Code highlighting will be applied to code wrapped inside this macro.</description>
 
   <form>
     <input name="language" type="ComboBox">

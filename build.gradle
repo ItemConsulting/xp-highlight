@@ -18,12 +18,20 @@ dependencies {
   compile "com.enonic.xp:portal-api:${xpVersion}"
 }
 
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+    }
+  }
+}
+
 bintray {
   user = "$bintrayUser"
   key = "$bintrayApiKey"
   pkg {
     repo = 'public'
-    name = 'no.item.xp.lib-highlight'
+    name = 'no.item.xp.lib-xp-highlight'
     userOrg = 'itemconsulting'
     licenses = ['BSD 3-Clause']
     vcsUrl = 'https://github.com/ItemConsulting/enonic-lib-highlight.git'
