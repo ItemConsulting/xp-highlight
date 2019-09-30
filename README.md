@@ -1,8 +1,8 @@
 # Code Highlighting Macro for Enonic XPs HTML Editor
 
-[ ![Download](https://api.bintray.com/packages/itemconsulting/public/no.item.xp.lib-xp-highlight/images/download.svg?version=1.0.0) ](https://bintray.com/itemconsulting/public/no.item.xp.lib-xp-highlight/1.0.0/link)
+[ ![Download](https://api.bintray.com/packages/itemconsulting/public/no.item.xp.highlight/images/download.svg?version=1.0.0) ](https://bintray.com/itemconsulting/public/no.item.xp.highlight/1.0.0/link)
 
-<img src="https://github.com/ItemConsulting/lib-xp-highlight/raw/master/docs/lib-xp-highlight-icon.svg?sanitize=true" width="150">
+<img src="https://github.com/ItemConsulting/highlight/raw/master/src/main/resources/application.svg?sanitize=true" width="150">
 
 ## Usage
 
@@ -12,7 +12,7 @@ To use the library add the following to you `gradle.build` file:
 
 ```groovy
 dependencies {
-    include "no.item.xp:lib-xp-highlight:1.0.0"
+    include "no.item.xp:highlight:1.0.0"
 }
 ```
 

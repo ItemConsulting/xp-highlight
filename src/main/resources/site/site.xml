@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+  <form>
+    <input type="TextLine" name="stylesheet">
+      <label>Highlight.js stylesheet file</label>
+      <default>default.min.css</default>
+      <help-text>The name of a file in this directory: https://github.com/highlightjs/highlight.js/tree/master/src/styles</help-text>
+      <occurrences minimum="0" maximum="1"/>
+    </input>
+  </form>
+</site>

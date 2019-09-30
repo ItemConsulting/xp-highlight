@@ -1,6 +1,6 @@
 var portalLib = require('/lib/xp/portal');
 
-var includedLanguages = [
+var LANGUAGES_INCLUDED = [
   "apache",
   "bash",
   "cs",
@@ -32,28 +32,49 @@ exports.macro = function (context) {
   var language = context.params.language || 'javascript';
 
   return {
-    body: '<pre style="padding: 0;"><code class="' + language + '">' + stripCodeAndPreTags(context.body) + '</code></pre>',
+    body: wrapInPreAndCodeTags(language, stripCodeAndPreTags(context.body)),
     pageContributions: {
       headEnd: [
-        '<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/styles/github.min.css" integrity="sha384-snvkDYLVttT3SBWz8WVvdGfmManlusUoAT3Agqco/8yBV7/tlflWJCUmP2O9f9wF" crossorigin="anonymous">',
-        '<link rel="stylesheet" href="' + portalLib.assetUrl({path: 'lib-highlight/style.css'}) + '"/>'
+        styleElementFromAssetPath('highlightjs/9.15.8/styles/' + getStylesheet()),
+        styleElementFromAssetPath('lib-highlight/style.css')
       ],
       bodyEnd: [
-        '<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/highlight.min.js" integrity="sha256-1zu+3BnLYV9LdiY85uXMzii3bdrkelyp37e0ZyTAQh0=" crossorigin="anonymous"></script>',
+        scriptElementFromAssetPath('highlightjs/9.15.8/highlight.min.js'),
         getUrlIfNotIncluded(language),
-        '<script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.7.0/highlightjs-line-numbers.min.js" integrity="sha256-3f4oLge37B7QacI/ksfIIW3bPxh5xOli03/VKtvRWgU=" crossorigin="anonymous"></script>',
+        scriptElementFromAssetPath('github-com-wcoder-highlightjs-line-numbers-js/2.7.0/highlightjs-line-numbers.min.js'),
         '<script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>'
       ]
     }
   }
 };
 
-function getUrlIfNotIncluded(language) {
-  return (includedLanguages.indexOf(language) === -1)
-    ? '<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.10/languages/' + language + '.min.js"></script>'
-    : ''
+function wrapInPreAndCodeTags(language, body) {
+  return '<pre style="padding: 0;"><code class="' + language + '">' + body + '</code></pre>';
 }
 
 function stripCodeAndPreTags(str) {
   return str.replace(/(<code>)|(<\/code>|<pre>|<\/pre>|<p>|<\/p>)/gm, "").trim();
+}
+
+function getStylesheet() {
+  var siteConfig = portalLib.getSiteConfig();
+  var stylesheet = siteConfig.stylesheet;
+
+  return (!stylesheet|| stylesheet === '')
+    ? 'default.css'
+    : stylesheet;
+}
+
+function styleElementFromAssetPath(href) {
+  return '<link rel="stylesheet" href="' + portalLib.assetUrl({ path: href }) + '"/>';
+}
+
+function scriptElementFromAssetPath(src) {
+  return '<script src="' + portalLib.assetUrl({ path: src }) + '"></script>';
+}
+
+function getUrlIfNotIncluded(language) {
+  return (LANGUAGES_INCLUDED.indexOf(language) === -1)
+    ? scriptElementFromAssetPath('highlightjs/9.15.8/languages/' + language + '.min.js')
+    : ''
 }

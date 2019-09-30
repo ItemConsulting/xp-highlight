@@ -1,8 +1,16 @@
 plugins {
     id 'java'
     id 'maven-publish'
-    id 'com.enonic.xp.base' version '2.0.0'
+    id 'com.enonic.xp.app' version '2.0.0'
     id "com.jfrog.bintray" version "1.8.4"
+}
+
+app {
+  name = "${appName}"
+  displayName = "${appDisplayName}"
+  vendorName = "${vendorName}"
+  vendorUrl = "${vendorUrl}"
+  systemVersion = "${xpVersion}"
 }
 
 repositories {
@@ -15,7 +23,9 @@ repositories {
 }
 
 dependencies {
-  compile "com.enonic.xp:portal-api:${xpVersion}"
+  include "com.enonic.xp:lib-portal:${xpVersion}"
+  webjar "org.webjars:highlightjs:${highlightVersion}"
+  webjar "org.webjars.npm:github-com-wcoder-highlightjs-line-numbers-js:${highlightLineNumbersVersion}"
 }
 
 publishing {
@@ -36,10 +46,10 @@ bintray {
   configurations = ['archives']
   pkg {
     repo = 'public'
-    name = 'no.item.xp.lib-xp-highlight'
+    name = 'no.item.xp.highlight'
     userOrg = 'itemconsulting'
     licenses = ['BSD 3-Clause']
-    vcsUrl = 'https://github.com/ItemConsulting/enonic-lib-highlight.git'
+    vcsUrl = 'https://github.com/ItemConsulting/highlight.git'
     version {
       name = project.version
       released = new Date()
