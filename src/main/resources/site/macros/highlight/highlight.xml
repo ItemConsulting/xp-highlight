@@ -3,33 +3,11 @@
   <description>Code highlighting will be applied to code wrapped inside this macro.</description>
 
   <form>
-    <input name="language" type="ComboBox">
+    <input name="language" type="TextLine">
       <label>Language</label>
       <occurrences minimum="1" maximum="1"/>
-      <config>
-        <option value="apache">Apache</option>
-        <option value="bash">Bash</option>
-        <option value="cs">C#</option>
-        <option value="css">CSS</option>
-        <option value="diff">Diff</option>
-        <option value="dockerfile">Dockerfile</option>
-        <option value="xml">HTML/XML</option>
-        <option value="http">HTTP</option>
-        <option value="json">JSON</option>
-        <option value="java">Java</option>
-        <option value="javascript">JavaScript</option>
-        <option value="kotlin">Kotlin</option>
-        <option value="nginx">Nginx</option>
-        <option value="plaintext">Plaitext</option>
-        <option value="properties">Properties</option>
-        <option value="python">Python</option>
-        <option value="shell">Shell Session</option>
-        <option value="scss">SCSS</option>
-        <option value="scala">Scala</option>
-        <option value="typescript">TypeScript</option>
-        <option value="yaml">YAML</option>
-      </config>
       <default>javascript</default>
+      <help-text>The name of a language from this list: https://github.com/highlightjs/highlight.js/tree/master/src/languages (e.g 'typescript')</help-text>
     </input>
   </form>
 </macro>
