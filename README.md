@@ -9,7 +9,7 @@
 ### Installation
 
  1. Install the application trough the Applications-app in Enonic XP 7.x.
- 2. Add the application to your site.
+ 2. Add the "Code Highlighting Macro"-application to your site.
  3. You can optionally configure which code highlighting style you want to use in the site config. It should be the 
     name of one of the [included css-files in highlight.js](https://github.com/highlightjs/highlight.js/tree/master/src/styles). 
 
