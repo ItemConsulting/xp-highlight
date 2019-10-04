@@ -63,5 +63,5 @@ bintrayApiKey=mySecretApiKey
 Run the following code to deploy a new version of the library to [Bintray](https://bintray.com/itemconsulting).
 
 ```bash
-./gradlew bintrayPublish
+./gradlew bintrayUpload
 ```
