@@ -18,7 +18,7 @@ repositories {
     jcenter()
     xp.enonicRepo()
     maven {
-        url  "http://itemconsulting.bintray.com/public"
+        url  "https://dl.bintray.com/itemconsulting/public"
     }
 }
 
