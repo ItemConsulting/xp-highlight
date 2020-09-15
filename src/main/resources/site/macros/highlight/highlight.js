@@ -35,11 +35,11 @@ exports.macro = function (context) {
     body: wrapInPreAndCodeTags(language, stripCodeAndPreTags(context.body)),
     pageContributions: {
       headEnd: [
-        styleElementFromAssetPath('highlightjs/9.15.8/styles/' + getStylesheet()),
+        styleElementFromAssetPath('highlightjs/10.1.2/styles/' + getStylesheet()),
         styleElementFromAssetPath('lib-highlight/style.css')
       ],
       bodyEnd: [
-        scriptElementFromAssetPath('highlightjs/9.15.8/highlight.min.js'),
+        scriptElementFromAssetPath('highlightjs/10.1.2/highlight.min.js'),
         getUrlIfNotIncluded(language),
         scriptElementFromAssetPath('github-com-wcoder-highlightjs-line-numbers-js/2.7.0/highlightjs-line-numbers.min.js'),
         '<script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>'
@@ -75,6 +75,6 @@ function scriptElementFromAssetPath(src) {
 
 function getUrlIfNotIncluded(language) {
   return (LANGUAGES_INCLUDED.indexOf(language) === -1)
-    ? scriptElementFromAssetPath('highlightjs/9.15.8/languages/' + language + '.min.js')
+    ? scriptElementFromAssetPath('highlightjs/10.1.2/languages/' + language + '.min.js')
     : ''
 }

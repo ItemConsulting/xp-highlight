@@ -1,8 +1,8 @@
 plugins {
-    id 'java'
-    id 'maven-publish'
-    id 'com.enonic.xp.app' version '2.0.0'
-    id "com.jfrog.bintray" version "1.8.4"
+  id 'java'
+  id 'maven-publish'
+  id 'com.enonic.xp.app' version '2.0.0'
+  id "com.jfrog.bintray" version "1.8.4"
 }
 
 app {
@@ -14,18 +14,18 @@ app {
 }
 
 repositories {
-    mavenLocal()
-    jcenter()
-    xp.enonicRepo()
-    maven {
-        url  "https://dl.bintray.com/itemconsulting/public"
-    }
+  mavenLocal()
+  jcenter()
+  xp.enonicRepo()
+  maven {
+    url  "https://dl.bintray.com/itemconsulting/public"
+  }
 }
 
 dependencies {
   include "com.enonic.xp:lib-portal:${xpVersion}"
-  webjar "org.webjars:highlightjs:${highlightVersion}"
-  webjar "org.webjars.npm:github-com-wcoder-highlightjs-line-numbers-js:${highlightLineNumbersVersion}"
+  webjar "org.webjars:highlightjs:10.1.2"
+  webjar "org.webjars.npm:github-com-wcoder-highlightjs-line-numbers-js:2.7.0"
 }
 
 publishing {
