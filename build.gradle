@@ -49,7 +49,7 @@ bintray {
     name = 'no.item.xp.highlight'
     userOrg = 'itemconsulting'
     licenses = ['BSD 3-Clause']
-    vcsUrl = 'https://github.com/ItemConsulting/highlight.git'
+    vcsUrl = 'https://github.com/ItemConsulting/xp-lib-highlight.git'
     version {
       name = project.version
       released = new Date()
