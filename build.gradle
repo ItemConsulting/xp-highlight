@@ -2,7 +2,8 @@ plugins {
   id 'java'
   id 'maven-publish'
   id 'com.enonic.xp.app' version '2.0.0'
-  id "com.jfrog.bintray" version "1.8.4"
+  id 'com.jfrog.bintray' version '1.8.4'
+  id 'no.item.xp.codegen' version '1.0.0'
 }
 
 app {
@@ -22,9 +23,11 @@ repositories {
   }
 }
 
+def highlightVersion = '10.1.2'
+
 dependencies {
   include "com.enonic.xp:lib-portal:${xpVersion}"
-  webjar "org.webjars:highlightjs:10.1.2"
+  webjar "org.webjars:highlightjs:${highlightVersion}"
   webjar "org.webjars.npm:github-com-wcoder-highlightjs-line-numbers-js:2.7.0"
 }
 
@@ -37,6 +40,37 @@ publishing {
       version version
     }
   }
+}
+
+task createHighlightConfigJson {
+  dependsOn += unpackWebJars
+
+  def cssFolder = new File("${buildDir}/webjars/META-INF/resources/webjars/highlightjs/${highlightVersion}/styles")
+  def langFolder = new File("${buildDir}/webjars/META-INF/resources/webjars/highlightjs/${highlightVersion}/languages")
+  def destFile = new File("${rootDir}/src/main/resources/highlight-config.json")
+  def builder = new groovy.json.JsonBuilder()
+
+  builder {
+    version highlightVersion
+    cssFiles(
+      cssFolder.listFiles()
+        .findAll { it.name.contains(".min.css") }
+        .collect { it.name }
+    )
+    languageFiles(
+      langFolder.listFiles()
+        .findAll {it.name.contains(".min.js")}
+        .collect {it.name }
+    )
+  }
+
+  destFile.write(builder.toPrettyString() + "\n")
+  println("Updated \"${destFile.name}\"")
+}
+
+jar {
+  dependsOn += createHighlightConfigJson
+  dependsOn += generateJSDoc
 }
 
 bintray {

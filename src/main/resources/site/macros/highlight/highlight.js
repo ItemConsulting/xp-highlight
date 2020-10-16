@@ -1,4 +1,5 @@
 var portalLib = require('/lib/xp/portal');
+var config = require('../../../highlight-config.json')
 
 var LANGUAGES_INCLUDED = [
   "apache",
@@ -28,6 +29,11 @@ var LANGUAGES_INCLUDED = [
   "yaml"
 ];
 
+/**
+ * Renders the macro
+ * @param {Object} context
+ * @param {HighlightConfig} context.params
+ */
 exports.macro = function (context) {
   var language = context.params.language || 'javascript';
 
@@ -35,12 +41,12 @@ exports.macro = function (context) {
     body: wrapInPreAndCodeTags(language, stripCodeAndPreTags(context.body)),
     pageContributions: {
       headEnd: [
-        styleElementFromAssetPath('highlightjs/10.1.2/styles/' + getStylesheet()),
+        styleElementFromAssetPath('highlightjs/' + config.version + '/styles/' + getStylesheet()),
         styleElementFromAssetPath('lib-highlight/style.css')
       ],
       bodyEnd: [
-        scriptElementFromAssetPath('highlightjs/10.1.2/highlight.min.js'),
-        getUrlIfNotIncluded(language),
+        scriptElementFromAssetPath('highlightjs/' + config.version + '/highlight.min.js'),
+        getUrlIfNotIncluded(language, config.version),
         scriptElementFromAssetPath('github-com-wcoder-highlightjs-line-numbers-js/2.7.0/highlightjs-line-numbers.min.js'),
         '<script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>'
       ]
@@ -57,11 +63,14 @@ function stripCodeAndPreTags(str) {
 }
 
 function getStylesheet() {
+  /**
+   * @type {SiteConfig} siteConfig
+   */
   var siteConfig = portalLib.getSiteConfig();
   var stylesheet = siteConfig.stylesheet;
 
   return (!stylesheet|| stylesheet === '')
-    ? 'default.css'
+    ? 'default.min.css'
     : stylesheet;
 }
 
@@ -73,8 +82,8 @@ function scriptElementFromAssetPath(src) {
   return '<script src="' + portalLib.assetUrl({ path: src }) + '"></script>';
 }
 
-function getUrlIfNotIncluded(language) {
+function getUrlIfNotIncluded(language, version) {
   return (LANGUAGES_INCLUDED.indexOf(language) === -1)
-    ? scriptElementFromAssetPath('highlightjs/10.1.2/languages/' + language + '.min.js')
+    ? scriptElementFromAssetPath('highlightjs/' + version + '/languages/' + language)
     : ''
 }
