@@ -19,33 +19,17 @@ repositories {
   xp.enonicRepo()
 }
 
+java {
+  sourceCompatibility = JavaVersion.VERSION_11
+  targetCompatibility = JavaVersion.VERSION_11
+}
+
 def highlightVersion = '10.1.2'
 
 dependencies {
   include "com.enonic.xp:lib-portal:${xpVersion}"
   webjar "org.webjars:highlightjs:${highlightVersion}"
   webjar "org.webjars.npm:github-com-wcoder-highlightjs-line-numbers-js:2.7.0"
-}
-
-publishing {
-  repositories {
-    maven {
-      name = "GitHubPackages"
-      url = uri("https://maven.pkg.github.com/ItemConsulting/xp-lib-highlight")
-      credentials {
-        username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
-        password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
-      }
-    }
-  }
-  publications {
-    gpr(MavenPublication) {
-      from components.java
-      groupId group
-      artifactId projectName
-      version version
-    }
-  }
 }
 
 task createHighlightConfigJson {
