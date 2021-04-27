@@ -2,8 +2,7 @@ plugins {
   id 'java'
   id 'maven-publish'
   id 'com.enonic.xp.app' version '2.0.0'
-  id 'com.jfrog.bintray' version '1.8.4'
-  id 'no.item.xp.codegen' version '1.1.0'
+  id 'no.item.xp.codegen' version '1.1.7'
 }
 
 app {
@@ -18,9 +17,6 @@ repositories {
   mavenLocal()
   jcenter()
   xp.enonicRepo()
-  maven {
-    url  "https://dl.bintray.com/itemconsulting/public"
-  }
 }
 
 def highlightVersion = '10.1.2'
@@ -32,8 +28,18 @@ dependencies {
 }
 
 publishing {
+  repositories {
+    maven {
+      name = "GitHubPackages"
+      url = uri("https://maven.pkg.github.com/ItemConsulting/xp-lib-highlight")
+      credentials {
+        username = project.findProperty("gpr.user") ?: System.getenv("USERNAME")
+        password = project.findProperty("gpr.key") ?: System.getenv("TOKEN")
+      }
+    }
+  }
   publications {
-    mavenJava(MavenPublication) {
+    gpr(MavenPublication) {
       from components.java
       groupId group
       artifactId projectName
@@ -71,22 +77,4 @@ task createHighlightConfigJson {
 jar {
   dependsOn += createHighlightConfigJson
   dependsOn += generateJSDoc
-}
-
-bintray {
-  user = "$bintrayUser"
-  key = "$bintrayApiKey"
-  publications = ['mavenJava']
-  configurations = ['archives']
-  pkg {
-    repo = 'public'
-    name = 'no.item.xp.highlight'
-    userOrg = 'itemconsulting'
-    licenses = ['BSD 3-Clause']
-    vcsUrl = 'https://github.com/ItemConsulting/xp-lib-highlight.git'
-    version {
-      name = project.version
-      released = new Date()
-    }
-  }
 }
