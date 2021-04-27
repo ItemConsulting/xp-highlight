@@ -47,7 +47,7 @@ exports.macro = function (context) {
       bodyEnd: [
         scriptElementFromAssetPath('highlightjs/' + config.version + '/highlight.min.js'),
         getUrlIfNotIncluded(language, config.version),
-        scriptElementFromAssetPath('github-com-wcoder-highlightjs-line-numbers-js/2.7.0/highlightjs-line-numbers.min.js'),
+        scriptElementFromAssetPath('highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js'),
         '<script>hljs.initHighlightingOnLoad();hljs.initLineNumbersOnLoad();</script>'
       ]
     }

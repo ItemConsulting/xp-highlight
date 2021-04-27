@@ -29,7 +29,7 @@ def highlightVersion = '10.1.2'
 dependencies {
   include "com.enonic.xp:lib-portal:${xpVersion}"
   webjar "org.webjars:highlightjs:${highlightVersion}"
-  webjar "org.webjars.npm:github-com-wcoder-highlightjs-line-numbers-js:2.7.0"
+  webjar 'org.webjars.npm:highlightjs-line-numbers.js:2.8.0'
 }
 
 task createHighlightConfigJson {
