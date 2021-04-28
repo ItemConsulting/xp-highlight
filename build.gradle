@@ -62,3 +62,14 @@ jar {
   dependsOn += createHighlightConfigJson
   dependsOn += generateJSDoc
 }
+
+publishing {
+  publications {
+    mavenJava(MavenPublication) {
+      from components.java
+      groupId group
+      artifactId projectName
+      version version
+    }
+  }
+}
