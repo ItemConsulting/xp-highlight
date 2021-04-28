@@ -1,6 +1,6 @@
 # Code Highlighting Macro for Enonic XPs HTML Editor
 
-[ ![Download](https://api.bintray.com/packages/itemconsulting/public/no.item.xp.highlight/images/download.svg?version=1.0.0) ](https://bintray.com/itemconsulting/public/no.item.xp.highlight/1.0.0/link)
+[![](https://jitpack.io/v/no.item/xp-highlight.svg)](https://jitpack.io/#no.item/xp-highlight)
 
 <img src="https://github.com/ItemConsulting/highlight/raw/master/src/main/resources/application.svg?sanitize=true" width="150">
 
@@ -8,7 +8,7 @@
 
 ### Installation
 
- 1. Install the application trough the Applications-app in Enonic XP 7.x.
+ 1. Install the application through the Applications-app in Enonic XP 7.x.
  2. Add the "Code Highlighting Macro"-application to your site.
  3. You can optionally configure which code highlighting style you want to use in the site config. It should be the 
     name of one of the [included css-files in highlight.js](https://github.com/highlightjs/highlight.js/tree/master/src/styles) (e.g `github.css`).
@@ -50,18 +50,7 @@ Deploy locally for testing purposes:
 ./gradlew publishToMavenLocal
 ```
 
-### Deploy to Bintray
+## Deploy to Jitpack
 
-Since we should not check secrets into git, first you need to add some parameters to `~/.gradle/gradle.properties` to be
-able to publish:
+Go to the [Jitpack page for xp-highlight](https://jitpack.io/#no.item/xp-highlight) to deploy from Github.
 
-```properties
-bintrayUser=myUser
-bintrayApiKey=mySecretApiKey
-```
-
-Run the following code to deploy a new version of the library to [Bintray](https://bintray.com/itemconsulting).
-
-```bash
-./gradlew publish
-```
