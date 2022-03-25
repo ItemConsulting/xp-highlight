@@ -24,7 +24,7 @@ java {
   targetCompatibility = JavaVersion.VERSION_11
 }
 
-def highlightVersion = '10.1.2'
+def highlightVersion = '11.5.0'
 
 dependencies {
   include "com.enonic.xp:lib-portal:${xpVersion}"
