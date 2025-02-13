@@ -46,11 +46,13 @@ task createHighlightConfigJson {
       cssFolder.listFiles()
         .findAll { it.name.contains(".min.css") }
         .collect { it.name }
+        .sort()
     )
     languageFiles(
       langFolder.listFiles()
         .findAll {it.name.contains(".min.js")}
         .collect {it.name }
+        .sort()
     )
   }
 
