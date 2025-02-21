@@ -11,7 +11,7 @@ export function macro(context: MacroContext<Highlight>): Response {
     body: wrapInPreAndCodeTags(language, stripCodeAndPreTags(context.body), config.version),
     pageContributions: {
       headEnd: [
-        `<link rel="stylesheet" href="${assetUrl({ path: `highlight.js/${config.version}/styles/${getStylesheet()}` })}"/>`,
+        `<link rel="stylesheet" href="${assetUrl({ path: `highlight.js/${config.version}/styles/${getStylesheet()}.min.css` })}"/>`,
         `<link rel="stylesheet" href="${assetUrl({ path: "lib-highlight/style.css" })}"/>`,
       ],
       bodyEnd: [`<script type="module" src="${assetUrl({ path: "highlight-code.mjs" })}"></script>`],
@@ -27,9 +27,7 @@ function wrapInPreAndCodeTags(language: string, body: string, version: string): 
   return `
     <div class="highlighted">
       <highlight-code language="${language}" language-pack-url="${languagePackUrl}">
-        <pre style="padding: 0;">
-          <code class="language-${language}">${body}</code>
-        </pre>
+        <pre style="padding: 0;"><code class="language-${language}">${body}</code></pre>
       </highlight-code>
     </div>`;
 }
@@ -39,6 +37,5 @@ function stripCodeAndPreTags(str: string): string {
 }
 
 function getStylesheet(): string {
-  const siteConfig = getSiteConfig<XP.SiteConfig>();
-  return siteConfig?.stylesheet || "default.min.css"; // || ensures handles empty strings since they are falsy
+  return getSiteConfig<XP.SiteConfig>()?.stylesheet || "default.css"; // || ensures handles empty strings since they are falsy
 }
