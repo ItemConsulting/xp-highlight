@@ -1,0 +1,42 @@
+{
+  "name": "xp-highlight",
+  "version": "1.0.3",
+  "description": "Code Highlighting Macro",
+  "private": false,
+  "scripts": {
+    "clean": "rimraf build",
+    "build": "concurrently -c auto -g --timings npm:build:*",
+    "minify": "concurrently -c auto -g --timings 'npm:build:browser -- --minify' npm:build:sass 'npm:build:server -- --minify' 'npm:build:static -- --minify'",
+    "build:asset": "npx tsup -d build/resources/main/assets",
+    "build:server": "npx tsup -d build/resources/main",
+    "check": "concurrently -c auto -g --timings npm:lint npm:check:types",
+    "check:types": "concurrently -g -r --timings npm:check:types:*",
+    "check2:types:asset": "npx tsc --noEmit -p src/main/resources/assets/tsconfig.json",
+    "check:types:server": "npx tsc --noEmit -p src/main/resources/tsconfig.json",
+    "lint": "eslint --cache --fix \"src/main/resources/**/*.ts\"",
+    "stylelint": "stylelint --fix \"src/main/resources/**/*.css\"",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "release": "npm run build",
+    "versioning": "npx changeset version && npm i --package-lock-only && NEW_VERSION=$(node -p \"require('./package.json').version\") && sed -i \"s/version.*/version = ${NEW_VERSION}/\" gradle.properties"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.12",
+    "@enonic-types/core": "^7.15.0-RC1",
+    "@enonic-types/global": "^7.15.0-RC1",
+    "@enonic-types/lib-portal": "^7.15.0-RC1",
+    "@item-enonic-types/global": "^7.15.0-A2",
+    "concurrently": "^9.1.2",
+    "esbuild-plugin-globals": "^0.2.0",
+    "eslint": "^9.20.0",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "glob": "^11.0.1",
+    "tsup": "^8",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.24.0"
+  },
+  "dependencies": {
+    "highlight.js": "^11.11.1"
+  }
+}
