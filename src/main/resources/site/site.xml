@@ -4,7 +4,6 @@
     <input name="stylesheet" type="CustomSelector">
       <label>Highlight.js visual style</label>
       <occurrences minimum="0" maximum="1"/>
-      <default>default</default>
       <config>
         <service>styles</service>
       </config>

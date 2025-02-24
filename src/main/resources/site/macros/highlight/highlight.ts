@@ -6,14 +6,16 @@ import type { Highlight } from ".";
 
 export function macro(context: MacroContext<Highlight>): Response {
   const language = context.params.language || "javascript";
+  const stylesheet = getSiteConfig<XP.SiteConfig>()?.stylesheet;
 
   return {
     body: wrapInPreAndCodeTags(language, stripCodeAndPreTags(context.body), config.version),
     pageContributions: {
-      headEnd: [
-        `<link rel="stylesheet" href="${assetUrl({ path: `highlight.js/${config.version}/styles/${getStylesheet()}.min.css` })}"/>`,
-        `<link rel="stylesheet" href="${assetUrl({ path: "lib-highlight/style.css" })}"/>`,
-      ],
+      headEnd: stylesheet
+        ? [
+            `<link rel="stylesheet" href="${assetUrl({ path: `highlight.js/${config.version}/styles/${stylesheet}.min.css` })}"/>`,
+          ]
+        : [],
       bodyEnd: [`<script type="module" src="${assetUrl({ path: "highlight-code.mjs" })}"></script>`],
     },
   };
@@ -34,8 +36,4 @@ function wrapInPreAndCodeTags(language: string, body: string, version: string): 
 
 function stripCodeAndPreTags(str: string): string {
   return str.replace(/(<code>)|(<\/code>|<pre>|<\/pre>|<p>|<\/p>)/gm, "").trim();
-}
-
-function getStylesheet(): string {
-  return getSiteConfig<XP.SiteConfig>()?.stylesheet || "default.css"; // || ensures handles empty strings since they are falsy
 }

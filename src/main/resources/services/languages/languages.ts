@@ -9,6 +9,17 @@ import type {
 import { assetUrl } from "/lib/xp/portal";
 
 const LOGO_FILES_EXISTS = ["typescript", "java", "javascript", "scala", "python", "csharp", "haskell"];
+const CORRECT_NAMES: Record<string, string> = {
+  csharp: "C#",
+  css: "CSS",
+  fsharp: "F#",
+  graphql: "GraphQL",
+  javascript: "JavaScript",
+  php: "PHP",
+  sql: "SQL",
+  typescript: "TypeScript",
+  xml: "XML",
+};
 
 export function get(
   req: Request<{ params: CustomSelectorServiceParams }>,
@@ -21,7 +32,7 @@ export function get(
 
       return {
         id: name,
-        displayName: name.split("-").map(capitalize).join(" "),
+        displayName: CORRECT_NAMES[name] ?? cleanName(name),
         description: name,
         iconUrl: LOGO_FILES_EXISTS.indexOf(name) !== -1 ? assetUrl({ path: `logos/${name}.svg` }) : undefined,
       };
@@ -36,4 +47,8 @@ export function get(
       hits: hits,
     },
   };
+}
+
+function cleanName(name: string): string {
+  return name.split("-").map(capitalize).join(" ");
 }
