@@ -1,8 +1,8 @@
-# Code Highlighting Macro for Enonic XPs HTML Editor
+# Code Highlighting Macro for Enonic XP
 
-[![](https://jitpack.io/v/no.item/xp-highlight.svg)](https://jitpack.io/#no.item/xp-highlight)
+[![](https://repo.itemtest.no/api/badge/latest/releases/no/item/xp-highlight)](https://repo.itemtest.no/#/releases/no/item/xp-highlight)
 
-<img src="https://github.com/ItemConsulting/highlight/raw/master/src/main/resources/application.svg?sanitize=true" width="150">
+![Icon](src/main/resources/application.svg)
 
 ## Usage
 
@@ -19,7 +19,7 @@
  2. Select **Insert Macro** on the toolbar
  3. Select **Code Highlighting**, and pick a *language*.
  4. Your code will now contain the following macro: `[highlight language="javascript"/]`
- 5. Code now can be written between `[highlight]` and `[/highlight]`:
+ 5. Code now can be inserted between `[highlight]` and `[/highlight]`:
      ```html
     [highlight language="javascript"]
     <pre>
@@ -36,21 +36,24 @@
 
 ### Building
 
-To build he project run the following code
+To build the project, run the following command
 
 ```bash
-./gradlew build
+enonic project build
 ```
 
-### Deploy locally
+You will find the jar-file at _./build/libs/item.jar_
 
-Deploy locally for testing purposes:
+### Deploying locally
+
+To deploy to a local sandbox, run the following command
 
 ```bash
-./gradlew publishToMavenLocal
+enonic project deploy
 ```
 
-## Deploy to Jitpack
+### Deploy to Maven
 
-Go to the [Jitpack page for xp-highlight](https://jitpack.io/#no.item/xp-highlight) to deploy from Github.
+```bash
+./gradlew publish -P com.enonic.xp.app.production=true
 

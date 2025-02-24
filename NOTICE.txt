@@ -3,7 +3,3 @@ Licenses used by enonic-lib-highlight
     Highlight.js
     BSD 3-Clause License
     https://github.com/highlightjs/highlight.js/blob/master/LICENSE
-
-    highlightjs-line-numbers.js
-    MIT License
-    https://github.com/wcoder/highlightjs-line-numbers.js/blob/master/LICENSE
