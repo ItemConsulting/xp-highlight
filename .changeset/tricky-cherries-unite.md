@@ -1,5 +1,5 @@
 ---
-"xp-niva": minor
+"xp-highlight": minor
 ---
 
 Use tsup as build tool
